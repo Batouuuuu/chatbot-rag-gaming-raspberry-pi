@@ -1,1 +1,1 @@
-# chatbot-rag-gaming-vocabulary-pi
+Chatbot pour mieux appréhender le vocabulaire complexe du jeu *League of Legends* et avoir un apperçu détaillé de l'histoire des différents champions.

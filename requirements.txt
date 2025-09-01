@@ -1,0 +1,5 @@
+## for web scrapping
+
+beautifulsoup4==4.13.5
+requests==2.32.5
+
