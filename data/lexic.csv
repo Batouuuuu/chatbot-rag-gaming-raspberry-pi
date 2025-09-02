@@ -1,68 +1,68 @@
 Word,Definition
-AA,AA : Auto-attack : les attaques de base d'un personnage.
-ACE,ACE : All Champions Eliminated : L'équipe entière éliminée au même moment.
-AD,AD : Attack Damage : Dégâts physique / d'attaque (à l'inverse de dégâts magiques)
-AD carry / ADC,AD carry / ADC : Désigne à la fois les tireurs en général ( ex. Tristana Jinx...) et le rôle du joueur de la voie du bas (où sont généralement joués les tireurs. L'ADC est un personnage généralement très faible en début de partie et très puissantà la fin mais très fragile. Son objectif est d'infliger un maximum de dégâts physiques.
-AFK,"AFK : Away From Keyboard : Personne ne jouant plus, comme si elle était partie faire autre chose."
-Agro,Agro : Agressif / agresser / agressé : avoir l'agro = se faire agresser (par exempel avoir l'agro de la tourelle ou d'un monstre). Jouer agro = jouer agressif.
-AOE,AOE : Area Of Effect : Zone d'effet (d'un sort par exemple). On parle par exemple de sorts en AOE pour parler de sorts de zone.
-All-in,All-in : Jouer très agressif en ne se laissant pas de porte de sortie. Tout tenter.
-Animation Cancel,Interrompre une animation d’attaque ou de sort pour enchaîner plus rapidement (ex : Riven).
-AP,AP : Ability Power. Dégâts magiques (à l'inverse des dégâts physiques).
+AA,Auto-attack:les attaques de base d'un personnage.
+ACE,All Champions Eliminated:L'équipe entière éliminée au même moment.
+AD,Attack Damage:Dégâts physique / d'attaque (à l'inverse de dégâts magiques)
+AD carry / ADC,Désigne à la fois les tireurs en général ( ex. Tristana Jinx...) et le rôle du joueur de la voie du bas (où sont généralement joués les tireurs. L'ADC est un personnage généralement très faible en début de partie et très puissantà la fin mais très fragile. Son objectif est d'infliger un maximum de dégâts physiques.
+AFK,"Away From Keyboard:Personne ne jouant plus, comme si elle était partie faire autre chose."
+Agro,Agressif / agresser / agressé:avoir l'agro = se faire agresser (par exempel avoir l'agro de la tourelle ou d'un monstre). Jouer agro = jouer agressif.
+AOE,Area Of Effect:Zone d'effet (d'un sort par exemple). On parle par exemple de sorts en AOE pour parler de sorts de zone.
+All-in,Jouer très agressif en ne se laissant pas de porte de sortie. Tout tenter.
+Animation Cancel,Interrompre une animation d’attaque ou de sort pour enchaîner plus rapidement (ex:Riven).
+AP,Ability Power. Dégâts magiques (à l'inverse des dégâts physiques).
 AP carry,Personnage faisant beaucoup de dégâts magiques (un mage généralement.
-ARAM,"ARAM : All Random All Mid : Mode de jeu sur la carte ""abîme hurlant"" contenant une seule voie où chacun a un personnage aléatoire."
-Armor,Armor : Armure : statistiques offrant de la résistance aux dégâts physiques.
-AS,AS : Attack Speed : fréquence à laquelle un personnage lance des attaques de base. Acheter de l'AS permet d'augmenter cette fréquence.
-Assist,Assist : Assister un personnage dans une élimination. Cela vous octroi de l'or et de l'expérience.
-Auto Reset,Attaque de base qui peut être réinitialisée plus rapidement avec certains sorts ou objets (ex : le Z de Jax)
-Back,Back : Utiliser son rappel. Le rappel permet de se téléporter à la base pour récupérer son points de vie et achter des objets.
-Backdoor ,Backdoor : Chercher à terminer la partie pas surprise quand les adversaires ne s'y attendent pas.
+ARAM,"All Random All Mid:Mode de jeu sur la carte ""abîme hurlant"" contenant une seule voie où chacun a un personnage aléatoire."
+Armor,Armure:statistiques offrant de la résistance aux dégâts physiques.
+AS,Attack Speed:fréquence à laquelle un personnage lance des attaques de base. Acheter de l'AS permet d'augmenter cette fréquence.
+Assist,Assister un personnage dans une élimination. Cela vous octroi de l'or et de l'expérience.
+Auto Reset,Attaque de base qui peut être réinitialisée plus rapidement avec certains sorts ou objets (ex:le Z de Jax)
+Back,Utiliser son rappel. Le rappel permet de se téléporter à la base pour récupérer son points de vie et achter des objets.
+Backdoor ,Backdoor:Chercher à terminer la partie pas surprise quand les adversaires ne s'y attendent pas.
 Back Timing,"Moment optimal pour faire un rappel (recall), souvent après avoir push une vague."
-Bait ,Bait : Appâter. Jouer l'appât pour que les adversaires vous attaquent et ainsi leur tendre un piège.
-Ban,"Ban : Bannir. Un bannissement se dit d'un champion (vous bannissez un champion en draft et ranked au début de la partie) et d'un compte (en se comportant mal, un joueur peut être banni du jeu)."
-Baron,Baron ou Nashor ou Baron Nashor : Monstre épique apparaissant à 25 minutes et conférant de très grands bonus à l'équipe qui l'élimine.
-BG,BG : Bad Game. Mauvaise partie.
-Blue buff,"Blue buff : Désigne le golem dans la jungle, ""cimier d'éveil"". Son élimination procure une grande régénération en mana."
+Bait ,Bait:Appâter. Jouer l'appât pour que les adversaires vous attaquent et ainsi leur tendre un piège.
+Ban,"Bannir. Un bannissement se dit d'un champion (vous bannissez un champion en draft et ranked au début de la partie) et d'un compte (en se comportant mal, un joueur peut être banni du jeu)."
+Baron,Baron ou Nashor ou Baron Nashor:Monstre épique apparaissant à 25 minutes et conférant de très grands bonus à l'équipe qui l'élimine.
+BG,Bad Game. Mauvaise partie.
+Blue buff,"Désigne le golem dans la jungle, ""cimier d'éveil"". Son élimination procure une grande régénération en mana."
 Boosted,Joueur qui a été monté de manière artificielle (souvent par quelqu’un d’autre).
-Bot,Bot : Désigne la botlane (voie du bas) ou un personnage contrôlé par l'IA.
-Botlane ,Botlane : Voie du bas.
-BRB,BRB : Be Right Back. Signifie : je reviens vite. Cela est généralement utilisé pour dire qu'un utilise son back.
-Bruiser,"Bruiser : Combattant. Les bruisers sont des personnages à mi-chemin entre un tank et un assassin. Ils profitent à la fois de grand dégâts et d'un forme de résistance. Généralement, leur faiblesse vient de leur manque de mobilité (ex. Garen)."
-BTW,BTW : By the way. Au passage.
-Buff,Buff : Effet augmentant des statistiques.
-Build,Build : Construction. Les objets (et parfois les runes) qu'utilise un champion. On peut par exemple dire qu'on build de l'AD pour dire qu'on achète un objet conférant des dégâts physiques.
-Burst ,Burst : Le fait d'infliger de très lourds dégâts en très peu de temps.
-Bush / brush,"Bush / brush : Buisson. Lorsque vous êtes dans un buisson, vous êtes invisibles tant qu'un adversaire ne rentre pas dedans ou que vous ne lancez pas un sort."
-Care,Care : Fait de faire attention.
-Carry,Carry : Porter. Se dit d'un joueur ou personnage qui porte la partie à lui tout seul sur ses épaules : l'équipe gagne grâce à lui.
-CC,"CC : Crowd Control. Les contrôles de foules sont des sorts restreignants les déplacements des adversaires (étourdissements, ralentissements, neutralisations etc.)"
-CD,CD :  Cooldown. Temps de récupération durant lequel vous ne pouvez plus faire une action (ex. lancer un sort).
-CDR,"CDR : Cooldown Reduction. Réduction des délais de récupération, permettant d'effectuer une action plus rapidement en réduisant le délai durant lequel vous ne pouvez plus la faire."
-Champion pool,Champion pool : Ensemble des champion qu'un joueur est capable de jouer convenablement.
-Chase,Chase : Poursuivre. Courir après un adversaire afin de l'éliminer.
+Bot,Désigne la botlane (voie du bas) ou un personnage contrôlé par l'IA.
+Botlane ,Botlane:Voie du bas.
+BRB,Be Right Back. Signifie:je reviens vite. Cela est généralement utilisé pour dire qu'un utilise son back.
+Bruiser,"Combattant. Les bruisers sont des personnages à mi-chemin entre un tank et un assassin. Ils profitent à la fois de grand dégâts et d'un forme de résistance. Généralement, leur faiblesse vient de leur manque de mobilité (ex. Garen)."
+BTW,By the way. Au passage.
+Buff,Effet augmentant des statistiques.
+Build,Construction. Les objets (et parfois les runes) qu'utilise un champion. On peut par exemple dire qu'on build de l'AD pour dire qu'on achète un objet conférant des dégâts physiques.
+Burst ,Burst:Le fait d'infliger de très lourds dégâts en très peu de temps.
+Bush / brush,"Buisson. Lorsque vous êtes dans un buisson, vous êtes invisibles tant qu'un adversaire ne rentre pas dedans ou que vous ne lancez pas un sort."
+Care,Fait de faire attention.
+Carry,Porter. Se dit d'un joueur ou personnage qui porte la partie à lui tout seul sur ses épaules:l'équipe gagne grâce à lui.
+CC,"Crowd Control. Les contrôles de foules sont des sorts restreignants les déplacements des adversaires (étourdissements, ralentissements, neutralisations etc.)"
+CD,Cooldown. Temps de récupération durant lequel vous ne pouvez plus faire une action (ex. lancer un sort).
+CDR,"Cooldown Reduction. Réduction des délais de récupération, permettant d'effectuer une action plus rapidement en réduisant le délai durant lequel vous ne pouvez plus la faire."
+Champion pool,Ensemble des champion qu'un joueur est capable de jouer convenablement.
+Chase,Poursuivre. Courir après un adversaire afin de l'éliminer.
 Cheater Recall,Retour à la base très tôt (généralement après avoir hard push une wave) pour prendre un petit avantage en lane sans perdre de sbires.
-Cheese,Cheese : Stratégie atypique et inattendue utilisée pour surprendre l'adversaire. Généralement assez risqué.
-Cleanse,"Cleanse : Sort d’invocateur ""Purge"", qui permet de retirer la plupart des effets négatifs (contrôles, ralentissements…)."
+Cheese,Stratégie atypique et inattendue utilisée pour surprendre l'adversaire. Généralement assez risqué.
+Cleanse,"Sort d’invocateur ""Purge"", qui permet de retirer la plupart des effets négatifs (contrôles, ralentissements…)."
 Coinflip,"Décision ou situation très risquée, avec un résultat imprévisible (50/50)."
-Core item,Core item : Objet central dans le build d’un champion. C’est un objet indispensable pour qu’il soit vraiment efficace.
-Cover,"Cover : Protéger un coéquipier, souvent en début de partie, pour éviter qu’il se fasse surprendre. Exemple : rester près de son jungler pendant qu’il fait ses premiers monstres."
-Counter gank,"Counter gank : Aller volontairement à l’endroit où le jungler ennemi va intervenir, pour le surprendre à votre tour."
-Counter jungle,Counter jungle : Entrer dans la jungle ennemie pour y voler des monstres et ralentir l’adversaire.
-Counter pick,"Counter pick : Choisir un champion qui a un avantage direct sur un autre, afin de prendre l’ascendant sur la phase de lane."
-Creep,"Creep : Nom anglais pour ""sbire"". Ce sont les petites unités contrôlées par le jeu qui apparaissent sur les lignes."
-Crit,Crit : Coup critique. Un coup qui inflige plus de dégâts que la normale.
+Core item,Objet central dans le build d’un champion. C’est un objet indispensable pour qu’il soit vraiment efficace.
+Cover,"Protéger un coéquipier, souvent en début de partie, pour éviter qu’il se fasse surprendre. Exemple:rester près de son jungler pendant qu’il fait ses premiers monstres."
+Counter gank,"Aller volontairement à l’endroit où le jungler ennemi va intervenir, pour le surprendre à votre tour."
+Counter jungle,Entrer dans la jungle ennemie pour y voler des monstres et ralentir l’adversaire.
+Counter pick,"Choisir un champion qui a un avantage direct sur un autre, afin de prendre l’ascendant sur la phase de lane."
+Creep,"Nom anglais pour ""sbire"". Ce sont les petites unités contrôlées par le jeu qui apparaissent sur les lignes."
+Crit,Coup critique. Un coup qui inflige plus de dégâts que la normale.
 CS,"Abréviation de ""Creep Score"", soit le nombre de sbires que vous avez éliminés. On parle aussi de ""prendre un CS"" pour dire ""récupérer un sbire""."
-Dash,"Saut rapide, sur une courte distance. Permet de se repositionner ou de traverser un mur. Exemple : le E de Lucian."
+Dash,"Saut rapide, sur une courte distance. Permet de se repositionner ou de traverser un mur. Exemple:le E de Lucian."
 DC,"""Disconnected"", c’est-à-dire qu’un joueur a été déconnecté du jeu."
 Debuff,"Effet négatif qui affaiblit votre champion (réduction d’armure, de vitesse, etc.)."
 Depop,"Se dit quand un joueur ou une équipe meurt très rapidement, presque instantanément."
 Deny,"Empêcher l’adversaire d’obtenir quelque chose. Par exemple, se mettre entre lui et ses sbires pour l’empêcher de les tuer."
 Desync,"Décalage dans le tempo d’une équipe (un joueur recall, un autre engage…). Peut coûter un objectif ou un fight."
-Diff (ex: Jungle diff),Forme abrégée de “la différence vient de ce rôle” (souvent utilisé pour râler et expliquer à cause de qui on a perdu).
+Diff (ex: Jungle diff),Diff (ex:Jungle diff):Forme abrégée de “la différence vient de ce rôle” (souvent utilisé pour râler et expliquer à cause de qui on a perdu).
 Dive,"Attaquer un ennemi sous sa tour, même si cela vous met en danger."
 Dodge,Esquiver un sort ennemi par un bon mouvement.
 DoT (Damage over Time),"Dégâts sur la durée. Par exemple, un sort qui brûle votre adversaire pendant quelques secondes."
-DPS (Damage per Second),"Dégâts par seconde. Désigne les champions qui infligent des dégâts en continu (ex. : Jinx, Cassiopeia…)."
+DPS (Damage per Second),"Dégâts par seconde. Désigne les champions qui infligent des dégâts en continu (ex.:Jinx, Cassiopeia…)."
 Drake / Dragon,"Monstre neutre offrant des bonus très puissants à l’équipe qui le tue. Il existe plusieurs types de dragons, chacun avec un effet différent (dégâts, régénération, vitesse, etc.)."
 Duo-Q,"Jouer une partie classée avec un ami, ce qui permet souvent une meilleure communication."
 Dynamic-Q,"Idem que Duo-Q, mais avec plusieurs amis."
@@ -85,30 +85,30 @@ Flank,"Attaquer l’ennemi par les côtés, souvent pour surprendre ses carrys."
 Flank TP,Téléportation utilisée dans le dos de l’adversaire pour initier un flank.
 Flash,Sort d’invocateur très utilisé permettant de se téléporter sur une courte distance.
 Flash in / out,Utiliser son Flash de manière agressive pour initier (in) ou défensive pour fuir (out).
-Focus,"Se concentrer sur une cible. Exemple : ""focus le carry"", c’est-à-dire se coordonner pour éliminer le carry adverse."
+Focus,"Se concentrer sur une cible. Exemple:""focus le carry"", c’est-à-dire se coordonner pour éliminer le carry adverse."
 Free Farm,"Pouvoir farmer tranquillement, sans être dérangé par un adversaire."
 Freeze,"Bloquer la vague de sbires pour qu’elle reste à un endroit précis, généralement près de sa tour."
 FTW (For The Win),Pour gagner. Se dit quand une action est décisive pour remporter la partie.
 Gank,Intervention surprise d’un ou plusieurs alliés sur une lane pour créer un surnombre et tenter un kill. Généralement réalisé par le jungler.
-Gap Closer,Sort qui permet de se rapprocher rapidement d’un ennemi. Exemple : le A de Vi ou le E de Xin Zhao.
+Gap Closer,Sort qui permet de se rapprocher rapidement d’un ennemi. Exemple:le A de Vi ou le E de Xin Zhao.
 GG (Good Game),Belle partie. Utilisé en fin de match pour saluer les joueurs.
 Ghost,"Sort d’invocateur ""Fantôme"", qui augmente fortement la vitesse de déplacement pendant quelques secondes."
 GJ (Good Job),Bien joué. Félicitation à un joueur pour une belle action.
 GL (Good Luck),Bonne chance. Utilisé avant le début de la partie.
-Global,Sort qui peut toucher ou affecter toute la carte. Exemple : l’ultime de Shen ou Gangplank.
-Greed,"Comportement trop avide, vouloir ""trop"" (ex : chase un kill inutile) et en subir les conséquences."
+Global,Sort qui peut toucher ou affecter toute la carte. Exemple:l’ultime de Shen ou Gangplank.
+Greed,"Comportement trop avide, vouloir ""trop"" (ex:chase un kill inutile) et en subir les conséquences."
 Harass,Harceler. Infliger des petits dégâts répétés à l’adversaire pour l’empêcher de jouer sereinement.
 Heal,"Sort d’invocateur ""Soin"", qui rend de la vie à vous et à un allié proche."
-HF (Have Fun),"Amuse-toi bien. Souvent utilisé avec GL : ""GL HF""."
+HF (Have Fun),"Amuse-toi bien. Souvent utilisé avec GL:""GL HF""."
 HP (Health Points),"Points de vie. Quand ils tombent à zéro, vous êtes mort."
-Hyper Carry,"Champion très faible early mais monstrueux en late s’il est bien protégé (ex : Vayne, Jinx…)."
+Hyper Carry,"Champion très faible early mais monstrueux en late s’il est bien protégé (ex:Vayne, Jinx…)."
 IA (Intelligence Artificielle),"Désigne un bot, un personnage contrôlé par l’ordinateur."
 Ignite,"Sort d’invocateur ""Embrasement"", qui inflige des dégâts sur le temps et réduit les soins reçus par la cible."
 INC (Incoming),"""J’arrive"" ou ""attention, quelque chose arrive"", souvent utilisé dans le chat ou en ping."
 Income,"Vos revenus en or, que ce soit par le farm, les assists ou les kills."
 Inhib (Inhibiteur),"Structure située dans la base ennemie. Quand elle est détruite, des super-sbires apparaissent dans la ligne correspondante."
 Invade,"Pénétrer dans la jungle ennemie, souvent en début de partie, pour voler des monstres ou prendre un kill par surprise."
-Insec,"Combo spectaculaire souvent réalisé avec Lee Sin : il s’agit de passer derrière un ennemi et de le repousser dans votre équipe à l’aide d’un kick (R), souvent avec une ward jump ou un flash."
+Insec,"Combo spectaculaire souvent réalisé avec Lee Sin:il s’agit de passer derrière un ennemi et de le repousser dans votre équipe à l’aide d’un kick (R), souvent avec une ward jump ou un flash."
 Int (Intentional Feed),"Mourir volontairement, ou de façon si absurde qu’on peut se poser la question."
 Item,"Objet que vous achetez avec votre or pour améliorer votre champion. L’ensemble de vos objets est souvent appelé votre ""stuff""."
 Interrupt,"Interrompre un sort canalisé (téléportation, ultime, etc.) avec un contrôle ou une attaque."
@@ -117,10 +117,10 @@ Jungle,"Partie de la carte entre les lignes, remplie de monstres neutres."
 Jungler,"Joueur chargé de tuer les monstres de la jungle, d’obtenir les buffs et de ganker les lanes."
 Juke,Esquive rusée. Action d’éviter un sort ou un ennemi par un mouvement imprévisible.
 Kite,Attaquer un adversaire tout en reculant pour rester hors de sa portée. Technique courante pour les ADC.
-Knock Back,Repousser violemment un ennemi (ex. : l’ultime de Tristana).
+Knock Back,Repousser violemment un ennemi (ex.:l’ultime de Tristana).
 Knock Up,Envoyer un ennemi en l’air. L’un des contrôles les plus forts car difficilement contrable.
 KS (Kill Steal),"Voler un kill. Peut être mal vu… ou bien vu selon le contexte ! Certains préfèrent dire ""Kill Secured""."
-Lane,"Voie. Il en existe trois : top, mid, et bot."
+Lane,"Voie. Il en existe trois:top, mid, et bot."
 Lane Gank,Gank direct en passant par la lane au lieu de la jungle ou d’un buisson.
 Lane Swap,"Échanger de lane avec un coéquipier, soit pour éviter un mauvais match-up, soit pour appliquer une stratégie."
 Laning Phase,Début de partie où chacun reste sur sa lane pour farmer et poser les bases du match.
@@ -129,7 +129,7 @@ Late Game,"Dernière phase de la partie (généralement après 35-40 minutes), o
 Leash,Aider son jungler à faire son premier camp en tapant les monstres sans prendre l’XP.
 Life Steal,Vol de vie. Vous récupérez une partie des PV infligés par vos auto-attaques.
 Line-up,Composition d’équipe.
-Macro,"Jeu global, stratégique : placement, vision, objectifs. C’est ce qui fait souvent la différence à haut niveau."
+Macro,"Jeu global, stratégique:placement, vision, objectifs. C’est ce qui fait souvent la différence à haut niveau."
 Magic Penetration,Statistique permettant de réduire l’impact de la résistance magique adverse.
 Magic Resist,"Résistance magique, réduit les dégâts magiques reçus."
 Main,Champion ou rôle principal que vous jouez le plus souvent.
@@ -141,7 +141,7 @@ Map Awareness,Attention portée à la carte. Être capable de lire et comprendre
 Melee,"Champion de corps à corps, qui attaque à courte portée."
 Mental Boom,"Perte totale de lucidité à cause du tilt. Le joueur est mentalement ""hors-jeu""."
 Meta,"Style de jeu dominant du moment. Certains champions ou objets deviennent ""meta"" lorsqu’ils sont plus forts que les autres à un instant donné."
-Micro,"Capacité mécanique à bien exécuter les actions individuelles : esquiver, bien se positionner, gérer ses sorts."
+Micro,"Capacité mécanique à bien exécuter les actions individuelles:esquiver, bien se positionner, gérer ses sorts."
 Mid Game,"Phase intermédiaire. La laning phase se termine, les objectifs deviennent prioritaires et les déplacements en groupe commencent."
 Mid,"Abréviation pour la midlane, la voie du milieu."
 Misaya,"Combo inventé par le joueur Misaya, consistant à ulti avec Twisted Fate en plein milieu de l’ennemi puis à activer Zhonya pour éviter les dégâts."
@@ -150,7 +150,7 @@ MP (Mana Points),Points de mana. Nécessaires pour utiliser des sorts.
 Mute All,Stratégie consistant à muter tous les joueurs pour se concentrer.
 Nerf,Affaiblissement d’un champion ou d’un objet dans un patch.
 NVM (Nevermind),"""Laisse tomber"", ""oublie ce que j’ai dit""."
-Objective Bounty,"Mécanique de comeback : si une équipe est trop derrière, des récompenses s'activent sur les objectifs."
+Objective Bounty,"Mécanique de comeback:si une équipe est trop derrière, des récompenses s'activent sur les objectifs."
 OMW (On My Way),"""J’arrive"", souvent utilisé en ping ou dans le chat pour prévenir."
 OOM (Out of Mana),"""Je n’ai plus de mana"", donc plus de sorts à lancer."
 OP (Overpowered),Trop fort. Se dit d’un champion ou objet trop puissant.
@@ -166,12 +166,12 @@ Peel,Protéger ses alliés fragiles (souvent les ADC ou mages) en repoussant ou 
 Pick,"Choisir un champion. On parle aussi de ""bon pick"" pour désigner un bon choix face à la composition ennemie."
 Ping,"Système de signalement rapide en jeu (Alt + clic). Sert à prévenir, alerter ou demander quelque chose à vos coéquipiers."
 Pink Ward,"Balise de vision (devenue ""Balise de contrôle"") qui révèle les unités invisibles à proximité."
-Play for,"Jouer pour un objectif, une lane ou un joueur (ex : ""Play for drake"", ""Play for top"")."
-Playmaker,"Champion capable de réaliser des actions décisives grâce à son kit de sorts. Ex : Lee Sin, Thresh…"
+Play for,"Jouer pour un objectif, une lane ou un joueur (ex:""Play for drake"", ""Play for top"")."
+Playmaker,"Champion capable de réaliser des actions décisives grâce à son kit de sorts. Ex:Lee Sin, Thresh…"
 Plays,"Actions bien réalisées, souvent spectaculaires ou très efficaces."
 PO (Pièces d’or),"Or du jeu, utilisé pour acheter vos objets."
 Poke,"Infliger des dégâts à distance de manière répétée, pour affaiblir l’adversaire sans prendre de risques."
-Power Spike,"Moment où un champion devient très fort (ex : niveau 6, 2 objets…)."
+Power Spike,"Moment où un champion devient très fort (ex:niveau 6, 2 objets…)."
 Premade,Joueurs qui lancent une partie ensemble (groupe d’amis ou duoQ).
 Priority / Prio,Contrôle d’une lane permettant de se déplacer en premier sur un objectif ou aider ailleurs.
 Proxy,"Technique avancée consistant à tuer les sbires ennemis entre leurs deux tours, pour mettre beaucoup de pression sur la lane."
@@ -192,13 +192,13 @@ Roam,Quitter sa lane pour aider une autre (souvent effectué par les mids ou sup
 Root,"Immobilisation par les racines. Sorte de contrôle qui empêche de se déplacer, mais pas de lancer des sorts."
 Rotation,"Se déplacer avec son équipe pour prendre les objectifs un à un (tour, dragon, etc.)."
 RQ (Rage Quit),Quitter la partie en plein tilt. Mauvais pour l’équipe… et souvent reporté.
-Scale,"Monter en puissance. Certains champions sont très faibles au début, mais deviennent très forts avec le temps (ex. : Kassadin, Vayne…)."
+Scale,"Monter en puissance. Certains champions sont très faibles au début, mais deviennent très forts avec le temps (ex.:Kassadin, Vayne…)."
 Shotcaller,Joueur qui donne les calls principaux (décisions stratégiques).
 Side Lane,Lignes du haut et du bas (top et bot).
 Shove,Pousser la lane rapidement pour faire avancer les sbires sous la tour ennemie.
 Skill,
 Skill Order,Ordre dans lequel vous améliorez vos sorts au fil des niveaux.
-Skill Shot,Sort qui nécessite de viser. Peut rater si l’adversaire esquive (ex. : le A de Morgana).
+Skill Shot,Sort qui nécessite de viser. Peut rater si l’adversaire esquive (ex.:le A de Morgana).
 Slow,Ralentissement. Réduit la vitesse de déplacement d’un ennemi.
 Smartcast,"Option de lancement rapide des sorts. Le sort est lancé dès que vous appuyez sur la touche, sans viser manuellement."
 Smite,"Sort d’invocateur ""Châtiment"", utilisé par les junglers pour tuer rapidement les monstres."
@@ -210,8 +210,8 @@ Spell Vamp,Vol de vie magique. Vous vous soignez en infligeant des dégâts avec
 Split Push,Stratégie où un joueur part seul pousser une lane pendant que son équipe met la pression ailleurs.
 Squishy,"Fragile. Se dit d’un champion qui encaisse très mal les dégâts (ADC, mages...)."
 SS,"Signal pour dire qu’un ennemi est ""missing"" (disparu de la lane)."
-Stack,"Accumulation. Peut désigner des charges d’un objet, d’un sort, ou des bonus cumulés (ex : Mejai, Nasus…)."
-Starter,"Objets achetés en tout début de partie (ex : anneau de Doran, épée longue, potion rechargeable...)."
+Stack,"Accumulation. Peut désigner des charges d’un objet, d’un sort, ou des bonus cumulés (ex:Mejai, Nasus…)."
+Starter,"Objets achetés en tout début de partie (ex:anneau de Doran, épée longue, potion rechargeable...)."
 Stealth,Furtivité. Rendre votre champion invisible.
 Strongside,"Côté de la carte priorisé (en général, là où le jungler joue)."
 Stuff,Équipement. Ensemble des objets achetés par votre champion.
@@ -247,8 +247,8 @@ Ward,Balise de vision. Permet de voir les déplacements ennemis et d’éviter l
 Weakside,Côté de la carte délaissé par le jungler ou l’équipe. Le joueur en weakside doit jouer safe.
 Wombo Combo,"Enchaînement de sorts d’équipe dévastateur, souvent bien coordonné."
 WP (Well Played),Bien joué.
-Win Condition,"Condition de victoire. L’élément ou stratégie clé qui permettra à votre équipe de gagner (ex : scaling d’un hyper carry, splitpush, teamfight...)."
+Win Condition,"Condition de victoire. L’élément ou stratégie clé qui permettra à votre équipe de gagner (ex:scaling d’un hyper carry, splitpush, teamfight...)."
 Winions,"Jeu de mots entre ""win"" et ""minions"". Situation où les sbires finissent la partie en détruisant les objectifs."
 xPeke,Référence à un backdoor mythique réalisé par le joueur xPeke. Se dit d’une victoire arrachée en solo en sneaky dans la base ennemie.
-Zone,"Zone : ""Zoner"" un ennemi, c’est l’empêcher d’approcher d’une zone importante (sbires, objectif...) sous peine de prendre des dégâts ou un contrôle."
-Zoning Tool,"Sort ou élément utilisé pour contrôler un espace sans forcément faire des kills (ex : barils de Gangplank, tourelle d’Heimer)."
+Zone,"""Zoner"" un ennemi, c’est l’empêcher d’approcher d’une zone importante (sbires, objectif...) sous peine de prendre des dégâts ou un contrôle."
+Zoning Tool,"Sort ou élément utilisé pour contrôler un espace sans forcément faire des kills (ex:barils de Gangplank, tourelle d’Heimer)."
