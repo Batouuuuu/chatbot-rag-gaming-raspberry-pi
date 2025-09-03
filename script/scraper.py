@@ -55,64 +55,78 @@ def save_data(lexic: Dict[str, str], filepath: str) -> None:
             writer.writerow([word, definition])
 
 
-#### collecting data from the lore page using selenium and Chrome driver (because page is loaded with js)
-def get_href_champions(driver ,url: str) -> Dict[str, str]:
+###### collecting data from the lore page using selenium and Chrome driver (because page is loaded with js) ###################
 
+def get_champion_name(driver) -> List[str]:
+    champions_names = driver.find_elements(By.TAG_NAME, "h1")
+    champions_names_list = [champion.text for champion in champions_names if champion.text != "CHAMPIONS"]  ## not taking the first h1 of the page because it's "CHAMPIONS" 
+    return champions_names_list
 
-    champions_infos = {"name": " ",
-                       "region": " ",
-                       "sumup": " ",
-                       "bio": " ",
-                       "story": " "}
-    
+def get_href_champions(driver ,url: str) -> List[str]:
     """Stock the hrefs (urls) of the champions and their name into a dict"""
     driver.get(url)
     time.sleep(5) ## wainting to load entirely the page
     continue_links = driver.find_elements(By.XPATH, "//a[contains(@href, '/fr_FR/champion/')]")
     hrefs = [el.get_attribute("href") for el in continue_links if el.get_attribute("href")]
-    # print(f"{len(continue_links)} liens trouvés :")
-    # for link in continue_links:
-    #     href = link.get_attribute('href')
-    #     print(href)
-    get_sumup_champion(driver, hrefs)
-
-    # champions_names = driver.find_elements(By.TAG_NAME, "h1")
-    # print(f"{len(champions_names)} champions trouvés")
-    # champions_names.pop(0) ## deleting the first h1  
-
-    # for (name, link) in enumerate (zip(champions_names, continue_links)):
-    #     champions_infos["name"] = name.text
-    #     champions_infos["region"] = link.get_attribute('href')
-
-    # print(champions_infos)
-
-    
-    
-def get_sumup_champion(driver, urls_links: List[str]):
-     
-    for link in urls_links:
+    return hrefs
+        
+def get_sumup_champion(driver, urls_links: List[str]) -> List[str]:
+    """Opening the hrefs to go to the champion sumup and scrappin it"""
+    sump_up_list = []
+    for link in urls_links[0:2]:
         driver.get(link)
-    
-        sum_up = driver.find_element(By.CLASS_NAME, "biographyText_3-to")
-      
+        driver.find_element(By.CLASS_NAME, "biographyText_3-to")
+        
         try:
             ## we need to wait the element to be loaded
             sum_up_element = WebDriverWait(driver, 10).until(
                 EC.visibility_of_element_located((By.CLASS_NAME, "biographyText_3-to"))
             )
-
-            print(sum_up_element.text)
-
+            
+            sump_up_list.append(sum_up_element.text)  
         except Exception as e:
             print(f"Erreur sur {link} : {e}")
+
+        liste_biography = get_biography(driver)
         
-   
-def get_biography():
-    """
+    return sump_up_list, liste_biography 
     
-    
-    
-    """
+def get_biography(driver):
+    """"""
+    list_biography = []
+    continue_links = driver.find_elements(By.XPATH, "//a[contains(@href, '/fr_FR/story/')]")
+    driver.find_element_by_xpath
+    bio_list = [el.get_attribute("href") for el in continue_links if el.get_attribute("href")]
+    print(bio_list)
+    for href_bio in bio_list:
+        driver.get(href_bio)
+        time.sleep(10)
+        liste = driver.find_elements(By.CLASS_NAME, "p_1_sJ")
+        jsp = [bio.text for bio in liste ] 
+        concat_bio = ' '.join(jsp) ## concat all the p mark
+        list_biography.append(concat_bio)
+    print(list_biography)
+
+    return list_biography
+            
+
+def fill_champion_dictionnary(driver, list_hrefs) -> List[Dict[str, str]]:
+    """Store all the informations in a dict"""   
+    liste_champions_infos = [] 
+    names = get_champion_name(driver)
+    sump_up_description, liste_bio  = get_sumup_champion(driver, list_hrefs)
+    # print(list_bio)
+    # for i, u, z in zip(names, sump_up_description, liste_bio ):
+    #     champions_infos = {"name": i,
+    #                     "region": " ",
+    #                     "sumup": u,
+    #                     "bio": z,
+    #                     "story": " "}
+    #     liste_champions_infos.append(champions_infos)
+    #     print(liste_champions_infos)
+        
+
+
 #### champion abilities 
 
 
@@ -142,8 +156,11 @@ def main():
     # driver = webdriver.Chrome(options=chrome_options)
     
     lore_url = "https://universe.leagueoflegends.com/fr_FR/champions/"
-    get_href_champions(driver, lore_url) 
+    liste_url = get_href_champions(driver, lore_url) 
+    fill_champion_dictionnary(driver, liste_url)
     driver.close()
+    
+
     
 
 if __name__ == "__main__":
