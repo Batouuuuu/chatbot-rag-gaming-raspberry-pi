@@ -8,9 +8,14 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.common.exceptions import NoSuchElementException
 import requests
 import csv
 import time
+import re
+
+
+
 
 def fetch_page(url: str, headers: Dict[str, str]) -> BeautifulSoup:
     page = requests.get(url, headers)
@@ -40,10 +45,14 @@ def parse_lexic(html: BeautifulSoup) -> Dict[str, str]:
     return lexic
 
 def clean_parsing(text_parsed: str) -> str:
-    """Clean all the unbreakable spaces"""
+    """Clean unbreakable spaces and remove HTML tags"""
     cleaning_spaces = [':\xa0', '\xa0:', '\xa0:\xa0',' :', ': ', '  :']
     for pattern in cleaning_spaces:
         text_parsed = text_parsed.replace(pattern, ':')
+    
+    ##clean html tag
+    text_parsed = re.sub(r'<.*?>', '', text_parsed)
+    text_parsed = text_parsed.replace('\xa0', ' ').replace('&nbsp;', ' ')
     return text_parsed.strip()
 
     
@@ -57,13 +66,33 @@ def save_data(lexic: Dict[str, str], filepath: str) -> None:
 
 ###### collecting data from the lore page using selenium and Chrome driver (because page is loaded with js) ###################
 
+class Champion:
+    ### Every league champion got a region, a sum up, a bio and a story  
+    def __init__(self, name: str, region: str, sum_up: str, biography: str, story: str):
+        self.name = name
+        self.region = region
+        self.sump_up = sum_up
+        self.biography = biography
+        self.story = story
+
+    def __repr__(self):
+        return f"Champion(name='{self.name}', region={self.region}, sum_up={self.sump_up}, biography={self.biography}, story={self.story})"
+
+    def save_csv():
+        """"""
+
 def get_champion_name(driver) -> List[str]:
     champions_names = driver.find_elements(By.TAG_NAME, "h1")
-    champions_names_list = [champion.text for champion in champions_names if champion.text != "CHAMPIONS"]  ## not taking the first h1 of the page because it's "CHAMPIONS" 
-    return champions_names_list
+    return [champion.text for champion in champions_names if champion.text != "CHAMPIONS"]  ## not taking the first h1 of the page because it's "CHAMPIONS" 
+    
+
+def get_region_name(driver) -> List[str]:
+    region_names = driver.find_elements(By.TAG_NAME, "h2")
+    return [region.text for region in region_names]
+
 
 def get_href_champions(driver ,url: str) -> List[str]:
-    """Stock the hrefs (urls) of the champions and their name into a dict"""
+    """Stock the hrefs"""
     driver.get(url)
     time.sleep(5) ## wainting to load entirely the page
     continue_links = driver.find_elements(By.XPATH, "//a[contains(@href, '/fr_FR/champion/')]")
@@ -73,7 +102,9 @@ def get_href_champions(driver ,url: str) -> List[str]:
 def get_sumup_champion(driver, urls_links: List[str]) -> List[str]:
     """Opening the hrefs to go to the champion sumup and scrappin it"""
     sump_up_list = []
-    for link in urls_links[0:2]:
+    list_biography = []
+    list_story = []
+    for link in urls_links[0:5]:
         driver.get(link)
         driver.find_element(By.CLASS_NAME, "biographyText_3-to")
         
@@ -87,53 +118,66 @@ def get_sumup_champion(driver, urls_links: List[str]) -> List[str]:
         except Exception as e:
             print(f"Erreur sur {link} : {e}")
 
-        liste_biography = get_biography(driver)
+        # get_faster_selenium_element(driver, element)
         
-    return sump_up_list, liste_biography 
+        list_biography.append(get_paragraph(driver))
+        list_story.append(get_story(driver))
+    # print(len(sump_up_list))    
+    return sump_up_list, list_biography, list_story
+
+def get_paragraph(driver) -> str:
+    """Go to the biography page of the champion and scrapping it"""
+    try:
+        continue_links = driver.find_element(By.XPATH, "//a[contains(@href, '/fr_FR/story/')]")
+        jsp = continue_links.get_attribute("href")
+        driver.get(jsp)
+        time.sleep(5)
+        liste = driver.find_elements(By.CLASS_NAME, "p_1_sJ")    
+        cleaned_paragraph = [clean_parsing(bio.get_attribute('innerHTML')) for bio in liste ] ##using the clean parsing fonction and innerHTML beacause of the js injection text
+        return ' '.join(cleaned_paragraph) ## concat all the p mark
     
-def get_biography(driver):
-    """"""
-    list_biography = []
-    continue_links = driver.find_elements(By.XPATH, "//a[contains(@href, '/fr_FR/story/')]")
-    driver.find_element_by_xpath
-    bio_list = [el.get_attribute("href") for el in continue_links if el.get_attribute("href")]
-    print(bio_list)
-    for href_bio in bio_list:
-        driver.get(href_bio)
-        time.sleep(10)
-        liste = driver.find_elements(By.CLASS_NAME, "p_1_sJ")
-        jsp = [bio.text for bio in liste ] 
-        concat_bio = ' '.join(jsp) ## concat all the p mark
-        list_biography.append(concat_bio)
-    print(list_biography)
+    except NoSuchElementException:
+        return '' ## case where a champion doesn't have a history
 
-    return list_biography
-            
+        
 
-def fill_champion_dictionnary(driver, list_hrefs) -> List[Dict[str, str]]:
-    """Store all the informations in a dict"""   
+def get_story(driver) -> str:
+    """Navigates to the story page and scrapes it using get_paragraph"""
+    return get_paragraph(driver)
+    
+def fill_class_champion(driver, list_hrefs) -> List[Champion]:
+    """Store all the informations into a list of the Champion class"""   
     liste_champions_infos = [] 
     names = get_champion_name(driver)
-    sump_up_description, liste_bio  = get_sumup_champion(driver, list_hrefs)
-    # print(list_bio)
-    # for i, u, z in zip(names, sump_up_description, liste_bio ):
-    #     champions_infos = {"name": i,
-    #                     "region": " ",
-    #                     "sumup": u,
-    #                     "bio": z,
-    #                     "story": " "}
-    #     liste_champions_infos.append(champions_infos)
-    #     print(liste_champions_infos)
-        
-
-
-#### champion abilities 
-
-
+    region = get_region_name(driver)
+    list_sump_up_description, liste_bi, list_story  = get_sumup_champion(driver, list_hrefs)
+    for name, region, sum_up, bio, story in zip(names, region, list_sump_up_description, liste_bi, list_story):
+        champion = Champion(name=name, region=region, sum_up=sum_up, biography=bio, story=story)
+        liste_champions_infos.append(champion)
+    
+    print(liste_champions_infos)
 
 
 #### patch notes 
 
+
+#### part for the champion abilities
+
+
+
+# def get_faster_selenium_element(driver, element) -> List[str]:
+#     """Optimisation for faster parsing on the page"""
+#     liste = []
+#     try:
+        
+#         WebDriverWait(driver, 10).until(
+#             EC.visibility_of_element_located((By.CLASS_NAME, element))
+#         )
+        
+#         liste.append(element.text)
+#         return liste  
+#     except Exception as e:
+#         print(f"Erreur : {e}")
 
 
 def main():
@@ -144,7 +188,6 @@ def main():
     # filepath = "./data/lexic.csv"
     # lexic_page = fetch_page(lexic_url, headers)
     # lexic = parse_lexic(lexic_page)
-    # print(lexic)
     # save_data(lexic, filepath)
     
 
@@ -157,7 +200,7 @@ def main():
     
     lore_url = "https://universe.leagueoflegends.com/fr_FR/champions/"
     liste_url = get_href_champions(driver, lore_url) 
-    fill_champion_dictionnary(driver, liste_url)
+    fill_class_champion(driver, liste_url)
     driver.close()
     
 
