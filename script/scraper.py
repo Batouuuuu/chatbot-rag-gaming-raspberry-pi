@@ -9,9 +9,10 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import NoSuchElementException
+from selenium.webdriver.chrome.options import Options
 import requests
 import csv
-import time
+import os
 import re
 
 
@@ -78,15 +79,23 @@ class Champion:
     def __repr__(self):
         return f"Champion(name='{self.name}', region={self.region}, sum_up={self.sump_up}, biography={self.biography}, story={self.story})"
 
-    def save_csv():
+    @staticmethod
+    def save_csv(filepath: os.PathLike):
         """"""
+        fields = ["Name", "Region", "SumUp", "Biography", "Story"]
+        with open(filepath, 'w', newline='') as csvfile:
+            writer = csv.writer(csvfile)
+            writer.writerow(fields)
+
 
 def get_champion_name(driver) -> List[str]:
+    faster_selenium_loader(driver, By.TAG_NAME, "h1") ## when the element appear on the page switch instantly
     champions_names = driver.find_elements(By.TAG_NAME, "h1")
     return [champion.text for champion in champions_names if champion.text != "CHAMPIONS"]  ## not taking the first h1 of the page because it's "CHAMPIONS" 
     
 
 def get_region_name(driver) -> List[str]:
+    faster_selenium_loader(driver, By.TAG_NAME, "h2") 
     region_names = driver.find_elements(By.TAG_NAME, "h2")
     return [region.text for region in region_names]
 
@@ -94,7 +103,7 @@ def get_region_name(driver) -> List[str]:
 def get_href_champions(driver ,url: str) -> List[str]:
     """Stock the hrefs"""
     driver.get(url)
-    time.sleep(5) ## wainting to load entirely the page
+    faster_selenium_loader(driver, By.XPATH, "//a[contains(@href, '/fr_FR/champion/')]" )
     continue_links = driver.find_elements(By.XPATH, "//a[contains(@href, '/fr_FR/champion/')]")
     hrefs = [el.get_attribute("href") for el in continue_links if el.get_attribute("href")]
     return hrefs
@@ -105,33 +114,24 @@ def get_sumup_champion(driver, urls_links: List[str]) -> List[str]:
     list_biography = []
     list_story = []
     for link in urls_links[0:5]:
-        driver.get(link)
-        driver.find_element(By.CLASS_NAME, "biographyText_3-to")
-        
-        try:
-            ## we need to wait the element to be loaded
-            sum_up_element = WebDriverWait(driver, 10).until(
-                EC.visibility_of_element_located((By.CLASS_NAME, "biographyText_3-to"))
-            )
-            
-            sump_up_list.append(sum_up_element.text)  
-        except Exception as e:
-            print(f"Erreur sur {link} : {e}")
-
-        # get_faster_selenium_element(driver, element)
-        
+        driver.get(link)    
+        text = faster_selenium_loader(driver, By.CLASS_NAME, "biographyText_3-to")
+        sump_up_list.append(text)
         list_biography.append(get_paragraph(driver))
         list_story.append(get_story(driver))
-    # print(len(sump_up_list))    
+    
     return sump_up_list, list_biography, list_story
+
+
 
 def get_paragraph(driver) -> str:
     """Go to the biography page of the champion and scrapping it"""
+
     try:
         continue_links = driver.find_element(By.XPATH, "//a[contains(@href, '/fr_FR/story/')]")
         jsp = continue_links.get_attribute("href")
         driver.get(jsp)
-        time.sleep(5)
+        faster_selenium_loader(driver , By.CLASS_NAME, "p_1_sJ")
         liste = driver.find_elements(By.CLASS_NAME, "p_1_sJ")    
         cleaned_paragraph = [clean_parsing(bio.get_attribute('innerHTML')) for bio in liste ] ##using the clean parsing fonction and innerHTML beacause of the js injection text
         return ' '.join(cleaned_paragraph) ## concat all the p mark
@@ -139,12 +139,22 @@ def get_paragraph(driver) -> str:
     except NoSuchElementException:
         return '' ## case where a champion doesn't have a history
 
-        
-
 def get_story(driver) -> str:
     """Navigates to the story page and scrapes it using get_paragraph"""
     return get_paragraph(driver)
     
+def faster_selenium_loader(driver, by, value) -> None:
+    """Optimisation for faster parsing on the page, scrolling down the page to avoid js lazy loading 
+    and get the element immediately when it appears"""
+    driver.execute_script("window.scrollTo(0, document.body.scrollHeight);") ## scrolling too avoid js lazyness loading
+    try:
+        WebDriverWait(driver, 10).until(
+            EC.visibility_of_element_located((by, value))
+        )
+        
+    except Exception as e:
+        print(f"Erreur : {e}")
+
 def fill_class_champion(driver, list_hrefs) -> List[Champion]:
     """Store all the informations into a list of the Champion class"""   
     liste_champions_infos = [] 
@@ -154,31 +164,16 @@ def fill_class_champion(driver, list_hrefs) -> List[Champion]:
     for name, region, sum_up, bio, story in zip(names, region, list_sump_up_description, liste_bi, list_story):
         champion = Champion(name=name, region=region, sum_up=sum_up, biography=bio, story=story)
         liste_champions_infos.append(champion)
+        #champion.save_csv("./data/lore.csv")
     
     print(liste_champions_infos)
+    return liste_champions_infos
 
 
-#### patch notes 
+#### patch notes #######
 
 
-#### part for the champion abilities
-
-
-
-# def get_faster_selenium_element(driver, element) -> List[str]:
-#     """Optimisation for faster parsing on the page"""
-#     liste = []
-#     try:
-        
-#         WebDriverWait(driver, 10).until(
-#             EC.visibility_of_element_located((By.CLASS_NAME, element))
-#         )
-        
-#         liste.append(element.text)
-#         return liste  
-#     except Exception as e:
-#         print(f"Erreur : {e}")
-
+#### part for the champion abilities #######
 
 def main():
     
@@ -193,17 +188,15 @@ def main():
 
     # lore_page = fetch_page(tt, headers)
     # print(lore_page)
-    driver = webdriver.Chrome()
-    # chrome_options = Options()
-    # chrome_options.add_argument("--headless=new")
-    # driver = webdriver.Chrome(options=chrome_options)
+    # driver = webdriver.Chrome()
+    chrome_options = Options()
+    chrome_options.add_argument("--headless=new")
+    driver = webdriver.Chrome(options=chrome_options)
     
     lore_url = "https://universe.leagueoflegends.com/fr_FR/champions/"
     liste_url = get_href_champions(driver, lore_url) 
     fill_class_champion(driver, liste_url)
     driver.close()
-    
-
     
 
 if __name__ == "__main__":
