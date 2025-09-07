@@ -2,12 +2,13 @@
 the lore page, champions abilities,
 the patch notes and the  and saving it into many csv"""
 
-from typing import Dict, List, Tuple
+from typing import Dict, List, Tuple, Union
 from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.remote.webdriver import WebDriver
+from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.chrome.options import Options
@@ -16,7 +17,7 @@ import requests
 import csv
 import os
 import re
-import time
+#import time
 
 def fetch_page(url: str, headers: Dict[str, str]) -> BeautifulSoup:
     page = requests.get(url, headers)
@@ -65,8 +66,29 @@ def save_data(lexic: Dict[str, str], filepath: str) -> None:
 
 ###### collecting data from the lore page using selenium and Chrome driver (because page is loaded with js) ###################
 
-class Champion:
+class BaseSavable:
+    """Class to save the objects into a csv file"""
+    @classmethod
+    def save_csv(cls, filepath: os.PathLike, objects: List["BaseSavable"]):
+        if not objects:
+            return
+        fields = cls.fields()
+        with open(filepath, 'w', newline='', encoding='utf8') as csvfile:
+            writer = csv.writer(csvfile)
+            writer.writerow(fields)
+            for obj in objects:
+                writer.writerow([getattr(obj, f) for f in fields])
+
+    @classmethod
+    def fields(cls):
+        """"""
+        raise NotImplementedError
+
+
+class Champion(BaseSavable):
     """Every league champion got a region, a sum up, a bio and a story"""  
+    fields_list = ["name", "region", "sum_up", "biography", "story"]
+
     def __init__(self, name: str, region: str, sum_up: str, biography: str, story: str):
         self.name = name
         self.region = region
@@ -76,21 +98,17 @@ class Champion:
 
     def __repr__(self):
         return f"Champion(name='{self.name}', region={self.region}, sum_up={self.sum_up}, biography={self.biography}, story={self.story})"
-
-    @staticmethod
-    def save_csv(filepath: os.PathLike, champions: List["Champion"]):
-        """"""
-        fields = ["Name", "Region", "SumUp", "Biography", "Story"]
-        with open(filepath, 'w', newline='', encoding="utf8") as csvfile:
-            writer = csv.writer(csvfile)
-            writer.writerow(fields)
-            for champion in champions:
-                writer.writerow([champion.name, champion.region, champion.sum_up, champion.biography, champion.story])
+    
+    @classmethod
+    def fields(cls):
+        return cls.fields_list
 
 
-class PatchNote:
+class PatchNote(BaseSavable):
     """All the patch note from league page"""
-    def __init__(self, number: str, sum_up: str, skins: str, content: str):
+    fields_list = ["number", "sum_up", "skins", "content"]
+
+    def __init__(self, number: str, sum_up: str, skins: str, content: Dict[str, str]):
         self.number = number
         self.sum_up = sum_up
         self.skins = skins
@@ -99,16 +117,21 @@ class PatchNote:
     def __repr__(self):
         return f"Patch(name='{self.number}',sum_up={self.sum_up},skins={self.skins},content={self.content}, )"
 
-    @staticmethod
-    def save_csv(filepath: os.PathLike, patch_list: List["PatchNote"]):
-        fields = ["Number", "Sum_up", "Skins", "Content"]
-        with open(filepath, "w", newline='', encoding="utf8") as csvfile:
-            writer = csv.writer(csvfile)
-            writer.writerow(fields)
-            for patch in patch_list:
-                writer.writerow([patch.number, patch.sum_up, patch.skins, patch.content])
+    @classmethod
+    def fields(cls):
+        return cls.fields_list
 
-def get_champion_name(driver) -> List[str]:
+
+def init_driver(headless: bool = True) -> WebDriver:
+    """"""
+    chrome_options = Options()
+    if headless:
+        chrome_options.add_argument("--headless=new")
+    driver = webdriver.Chrome(options=chrome_options)
+    return driver
+
+
+def get_champion_name(driver: WebDriver) -> List[str]:
     scroll_and_get_elements(driver, By.TAG_NAME, "h1") ## when the element appear on the page switch instantly
     champions_names = driver.find_elements(By.TAG_NAME, "h1")
     return [champion.text for champion in champions_names if champion.text != "CHAMPIONS"]  ## not taking the first h1 of the page because it's "CHAMPIONS" 
@@ -129,30 +152,14 @@ def get_href_champions(driver: WebDriver ,url: str) -> List[str]:
     continue_links = driver.find_elements(By.XPATH, "//a[contains(@href, '/fr_FR/champion/')]")
     hrefs = [el.get_attribute("href") for el in continue_links if el.get_attribute("href")]
     return hrefs
-        
-def get_sumup_champion(driver: WebDriver, urls_links: List[str]) -> Tuple[List[str], List[str], List[str]]:
-    """Opening the hrefs to go to the champion sumup and scrappin it"""
-    sum_up_list = []
-    list_biography = []
-    list_story = []
-    for link in tqdm(urls_links, total=len(urls_links), desc="Processing champion parsing"):
-        driver.get(link)    
-        texts = scroll_and_get_elements(driver, By.CLASS_NAME, "biographyText_3-to")
-        joined_text = " ".join(el.text for el in texts) ##convert the selenium object into the element text
-        sum_up_list.append(joined_text)
-        list_biography.append(get_paragraph(driver))
-        list_story.append(get_story(driver))
-    # print(list_biography)
-    return sum_up_list, list_biography, list_story
-
+    
 def get_paragraph(driver: WebDriver) -> str:
     """Go to the biography page of the champion and scrapping it"""
-
     try:
         continue_links = driver.find_element(By.XPATH, "//a[contains(@href, '/fr_FR/story/')]")
         jsp = continue_links.get_attribute("href")
         driver.get(jsp)
-        time.sleep(10)
+        #time.sleep(10)
         liste = scroll_and_get_elements(driver , By.CLASS_NAME, "p_1_sJ")
         cleaned_paragraph = [clean_parsing(bio.get_attribute('innerHTML')) for bio in liste ] ##using the clean parsing fonction and innerHTML beacause of the js injection text
         return ' '.join(cleaned_paragraph) ## concat all the p mark
@@ -165,7 +172,7 @@ def get_story(driver: WebDriver) -> str:
     """Navigates to the story page and scrapes it using get_paragraph"""
     return get_paragraph(driver)
     
-def scroll_and_get_elements(driver: WebDriver, by, value, first: bool = False) -> None:
+def scroll_and_get_elements(driver: WebDriver, by: str, value: str, first: bool = False) -> Union[WebElement, List[WebElement]]:
     """Optimisation for faster parsing on the page, scrolling down the page to avoid js lazy loading 
     and get the element immediately when it appears"""
     driver.execute_script("window.scrollTo(0, 250);") ## scrolling to avoid js lazyness loading
@@ -182,25 +189,38 @@ def scroll_and_get_elements(driver: WebDriver, by, value, first: bool = False) -
         print(f"Erreur : {e}")
         return []
 
+
+def get_sumup_champion(driver: WebDriver, urls_links: List[str]) -> Tuple[List[str], List[str], List[str]]:
+    """Opening the hrefs to go to the champion sumup and scrappin it"""
+    sum_up_list = []
+    list_biography = []
+    list_story = []
+    for link in tqdm(urls_links, total=len(urls_links), desc="Processing champion parsing"):
+        driver.get(link)    
+        texts = scroll_and_get_elements(driver, By.CLASS_NAME, "biographyText_3-to")
+        joined_text = " ".join(el.text for el in texts) ##convert the selenium object into the element text
+        sum_up_list.append(joined_text)
+        list_biography.append(get_paragraph(driver))
+        list_story.append(get_story(driver))
+    
+    return sum_up_list, list_biography, list_story
+
 def fill_class_champion(driver: WebDriver, list_hrefs: List[str]) -> List[Champion]:
     """Store all the informations into a list of the Champion class"""   
     liste_champions_infos = [] 
     names = get_champion_name(driver)
     region = get_region_name(driver)
     list_sum_up_description, liste_bi, list_story  = get_sumup_champion(driver, list_hrefs)
-    print(len(names), len(region), len(list_sum_up_description), len(liste_bi), len(list_story))
     for name, region, sum_up, bio, story in zip(names, region, list_sum_up_description, liste_bi, list_story):
         champion = Champion(name=name, region=region, sum_up=sum_up, biography=bio, story=story)
         liste_champions_infos.append(champion)
         
-    #print(liste_champions_infos)
     return liste_champions_infos
-
 
 
 ######## patch notes ##############
 
-def get_patchnote_urls(driver: WebDriver, url_page: List[str]) -> List[str]:
+def get_patchnote_urls(driver: WebDriver, url_page: str) -> List[str]:
     """Stock all the url from the differents patchs"""
     driver.get(url_page)
     continue_links = scroll_and_get_elements(driver, By.XPATH, "//a[contains(@href, '/fr-fr/news/game-updates/')]" )
@@ -208,79 +228,60 @@ def get_patchnote_urls(driver: WebDriver, url_page: List[str]) -> List[str]:
 
     return hrefs
 
-def get_name_patch(driver: WebDriver) -> List[str]:
-    """"""
-    liste_patch = []
-    element = driver.find_elements(By.XPATH, "//div[@data-testid='card-title']")
-    for el in element:
-        patch = re.sub("Notes de patch", "", el.text).strip()
-        liste_patch.append(patch)
-    
-    return liste_patch
+def get_patch_name(driver: WebDriver) -> str:
+    """Get the number of the patch on the actual page"""
+    element = driver.find_element(By.XPATH, "//div[@data-testid='card-title']")
+    patch = re.sub("Patch note", "", element.text).strip()
+    return patch
 
-def open_links(driver: WebDriver, list_hrefs: List[str]):
-    all_patches = []
-    all_skins = []
-    all_champ_buffs = []
-    for url in list_hrefs:
-        driver.get(url)
-        sum_up_patch = get_sum_up_patch(driver)
-        all_patches.extend(sum_up_patch)
-        skins = get_skin_update(driver)
-        all_skins.extend(skins)
-        champ_buffs = get_champion_nerf_and_buff(driver)
-        all_champ_buffs.append(champ_buffs)
-    
-    return all_patches, all_skins, all_champ_buffs
-
-def get_sum_up_patch(driver: WebDriver):
+def get_sum_up_patch(driver: WebDriver) -> str:
     element = scroll_and_get_elements(driver , By.CSS_SELECTOR, "blockquote.blockquote.context", first=True)
     if element and element.text.strip():  
-        return [clean_parsing(element.text)]
-    return []
+        return clean_parsing(element.text)
+    return ""
 
-def get_skin_update(driver: WebDriver):
+def get_skin_update(driver: WebDriver) -> str:
     """"""
     ### generaly the skins update are in the first class white-stone accent-before 
     element = scroll_and_get_elements(driver , By.CSS_SELECTOR, ".white-stone.accent-before p", True)
     if element and element.text.strip():  
-        return [clean_parsing(element.text)]
-    return []
+        return clean_parsing(element.text)
+    return ""
 
 def get_champion_nerf_and_buff(driver: WebDriver) -> Dict[str, str]:
-    """"""
+    """Return a dictionnary {name_champion: buff/nerf} for the actual page"""
     dict_champion = {}
     champion_elements = scroll_and_get_elements(driver, By.TAG_NAME, "h3")
     champion_names = [el.text for el in champion_elements]
-
     summary_elements = scroll_and_get_elements(driver, By.CLASS_NAME, "summary")
     summary_texts = [el.text for el in summary_elements]
-
     for champion, summary in zip(champion_names, summary_texts):
         dict_champion[champion] = summary
 
     return dict_champion
 
-def fill_class_patch_note(list_patch_name: List[str], list_sum_up: List[str], list_skins: List[str], list_content_patch: List[Dict[str,str]]) -> List[PatchNote]:
-    """"""
-    list_of_all_patchs = []
-    for patch_name, sump_up,skin, content in zip(list_patch_name, list_sum_up, list_skins, list_content_patch):
-        list_of_all_patchs.append(PatchNote(number=patch_name,sum_up=sump_up,skins=skin,content=content)) 
-    # print(list_of_all_patchs)
-    return list_of_all_patchs
 
+def fill_class_patchnote(driver: WebDriver, list_hrefs: List[str]) -> List[PatchNote]:
+    """Open links and fill the patchnote class"""
+    all_patches = []
+    for url in list_hrefs:
+        driver.get(url)
+        patch = PatchNote(number=get_patch_name(driver),sum_up=get_sum_up_patch(driver),skins=get_skin_update(driver),content=get_champion_nerf_and_buff(driver))
+        all_patches.append(patch)
 
+    return all_patches
 
 #### part for the champion abilities #######
-""""""
 
+######
 
 def main():
     
-    ## parsing with beautifulsoup for the dictionnary of definition
     RUN_PARSING_DEF = False
     RUN_PARSING_LORE = False
+    RUN_PARSING_PATCH = True
 
+    ## parsing with beautifulsoup for the dictionnary of definition
     if RUN_PARSING_DEF:
         headers = {"Accept-Encoding": "gzip",
                 "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36"}
@@ -293,10 +294,7 @@ def main():
     ### for the lore page
     if RUN_PARSING_LORE:
         try:
-            driver = webdriver.Chrome()
-            chrome_options = Options()
-            chrome_options.add_argument("--headless=new")
-            driver = webdriver.Chrome(options=chrome_options)
+            driver = init_driver()
             lore_url = "https://universe.leagueoflegends.com/fr_FR/champions/"
             liste_url = get_href_champions(driver, lore_url) 
             champions = fill_class_champion(driver, liste_url)
@@ -304,18 +302,16 @@ def main():
         finally:    
             driver.close()
 
-    try:
-        driver = webdriver.Chrome()
-        chrome_options = Options()
-        chrome_options.add_argument("--headless=new")
-        patch_note_page = "https://www.leagueoflegends.com/fr-fr/news/tags/patch-notes/"
-        liste_patch_url = get_patchnote_urls(driver, patch_note_page)
-        patch_name_list = get_name_patch(driver)
-        sum_up_patch_list, skin_list, content_patch = open_links(driver, liste_patch_url)
-        patchs = fill_class_patch_note(patch_name_list, sum_up_patch_list, skin_list, content_patch)
-        PatchNote.save_csv("./data/patchs.csv", patchs)
-    finally:
-        driver.close()
+    ### for the the patchs page
+    if RUN_PARSING_PATCH:
+        try:
+            driver = init_driver()
+            patch_note_page = "https://www.leagueoflegends.com/fr-fr/news/tags/patch-notes/"
+            liste_patch_url = get_patchnote_urls(driver, patch_note_page)
+            list_all_patchs = fill_class_patchnote(driver, liste_patch_url)
+            PatchNote.save_csv("./data/patchs.csv", list_all_patchs)
+        finally:
+            driver.close()
     
 
 if __name__ == "__main__":
