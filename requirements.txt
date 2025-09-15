@@ -10,4 +10,10 @@ numpy==1.26.0
 
 ## nlp / embeddings
 sentence-transformers==5.1.0
+faiss-cpu==1.12.0  ## i made it with my cpu but you can do it with faiss-gpu i you got a gpu
 langchain==0.3.27
+langchain-community==0.3.29
+rapidfuzz==3.14.1 
+
+##retrieval generation
+mistralai==1.9.10
