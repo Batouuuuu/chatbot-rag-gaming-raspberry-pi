@@ -5,6 +5,16 @@ A chatbot that helps you explore the **League of Legends** universe.
 ## Legal notice
 “This project uses external data from Riot Games (League of Legends) and the Mistral API. All rights of those data sources remain with their respective owners.”
 
+## Supported Languages
+Thanks to the **MiniLM-L12-v2 multilingual embeddings** and **Mistral 7B**, the chatbot can understand and respond in multiple languages including:
+- English
+- French
+- Spanish
+- German
+- And more…
+
+Note: The majority of the **champion lore and patch data** is in English, so answers may be less detailed in other languages.
+
 ## Features
 - Get a detailed view of the **lore** of any champion.
 - Quickly retrieve a **summary** of a champion’s backstory.
@@ -44,4 +54,15 @@ Clone the repo and install dependencies
 
 ```bash
 pip install -r requirements.txt
+```
+
+## Run the chatbot
+Make sure you are at the root of the project 
+
+```bash
+cd path/to/the/projet
+```
+Then execute 
+```python
+streamlit run app.py
 ```
