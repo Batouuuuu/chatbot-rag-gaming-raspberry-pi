@@ -17,3 +17,6 @@ rapidfuzz==3.14.1
 
 ##retrieval generation
 mistralai==1.9.10
+
+##application interface 
+streamlit==1.49.1
