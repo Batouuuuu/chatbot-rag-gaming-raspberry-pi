@@ -22,7 +22,7 @@ Note: The majority of the **champion lore and patch data** is in English, so ans
 - *(Planned)* Provide **definitions of complex in-game terms**.
 
 ## API Key
-This project uses the **Mistral 7B** model.  
+This project uses the **Mistral Large** model.  
 You need to generate an API key here:  
 [https://docs.mistral.ai/getting-started/quickstart/](https://docs.mistral.ai/getting-started/quickstart/)
 
@@ -66,3 +66,11 @@ Then execute
 ```python
 streamlit run app.py
 ```
+
+
+## Run the chatbot with Docker
+
+Build and launch the container:
+
+```bash
+docker-compose up --build
