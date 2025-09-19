@@ -5,6 +5,10 @@ A chatbot that helps you explore the **League of Legends** universe.
 ## Legal notice
 “This project uses external data from Riot Games (League of Legends) and the Mistral API. All rights of those data sources remain with their respective owners.”
 
+
+![Demo](assets/chatbot-demo.gif)
+
+
 ## Supported Languages
 Thanks to the **MiniLM-L12-v2 multilingual embeddings** and **Mistral 7B**, the chatbot can understand and respond in multiple languages including:
 - English
@@ -57,10 +61,10 @@ pip install -r requirements.txt
 ```
 
 ## Run the chatbot
-Make sure you are at the root of the project 
+Make sure you are in the app repo of the project 
 
 ```bash
-cd path/to/the/projet
+cd path/to/the/projet/app
 ```
 Then execute 
 ```python
